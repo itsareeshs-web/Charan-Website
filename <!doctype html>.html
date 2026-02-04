@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Charan — Personal Website</title>
+  <meta name="description" content="Charan's personal website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg: #0b1220;
+      --card: rgba(255,255,255,0.06);
+      --text: rgba(255,255,255,0.92);
+      --muted: rgba(255,255,255,0.68);
+      --line: rgba(255,255,255,0.12);
+      --accent: #5eead4; /* change if you want */
+      --accent2: #60a5fa;
+      --shadow: 0 10px 30px rgba(0,0,0,0.35);
+      --radius: 18px;
+      --max: 1050px;
+    }
+
+    *{ box-sizing: border-box; }
+    body{
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(900px 500px at 15% 10%, rgba(96,165,250,0.15), transparent 60%),
+        radial-gradient(900px 500px at 85% 20%, rgba(94,234,212,0.14), transparent 60%),
+        radial-gradient(700px 400px at 50% 90%, rgba(99,102,241,0.10), transparent 60%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+    }
+
+    a{ color: inherit; text-decoration: none; }
+    .wrap{ max-width: var(--max); margin: 0 auto; padding: 28px 18px 70px; }
+
+    /* Nav */
+    .nav{
+      position: sticky; top: 0;
+      backdrop-filter: blur(12px);
+      background: rgba(11,18,32,0.65);
+      border-bottom: 1px solid var(--line);
+      z-index: 10;
+    }
+    .nav-inner{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 14px 18px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 12px;
+    }
+    .brand{
+      display: flex; align-items: center; gap: 10px;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+    }
+    .dot{
+      width: 10px; height: 10px; border-radius: 999px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 0 0 4px rgba(94,234,212,0.12);
+    }
+    .links{
+      display: flex; gap: 14px; flex-wrap: wrap;
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 14px;
+    }
+    .links a{ padding: 8px 10px; border-radius: 12px; }
+    .links a:hover{ background: rgba(255,255,255,0.06); color: var(--text); }
+
+    /* Hero */
+    .hero{
+      padding: 56px 0 28px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+    @media (max-width: 860px){
+      .hero{ grid-template-columns: 1fr; padding-top: 34px; }
+    }
+
+    .card{
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .hero-main{ padding: 28px; }
+    .kicker{
+      color: var(--muted);
+      font-weight: 600;
+      letter-spacing: 0.2px;
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      padding: 6px 10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.03);
+    }
+    .kicker span{
+      width: 8px; height: 8px; border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(94,234,212,0.10);
+    }
+    h1{
+      margin: 14px 0 8px;
+      font-size: clamp(34px, 4vw, 48px);
+      line-height: 1.1;
+      letter-spacing: -0.6px;
+    }
+    .subtitle{
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+      max-width: 62ch;
+    }
+    .cta{
+      margin-top: 18px;
+      display: flex; gap: 10px; flex-wrap: wrap;
+    }
+    .btn{
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+      padding: 10px 14px;
+      border-radius: 14px;
+      font-weight: 700;
+      font-size: 14px;
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      transition: transform 120ms ease, background 120ms ease;
+    }
+    .btn:hover{ background: rgba(255,255,255,0.08); transform: translateY(-1px); }
+    .btn.primary{
+      border: none;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #07111f;
+    }
+
+    .hero-side{
+      padding: 24px;
+      display: grid;
+      gap: 12px;
+      align-content: start;
+    }
+    .profile{
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 12px;
+      align-items: center;
+      padding: 14px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
+    }
+    .avatar{
+      width: 56px; height: 56px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(94,234,212,0.25), rgba(96,165,250,0.25));
+      display: grid; place-items: center;
+      font-weight: 800;
+      color: rgba(255,255,255,0.92);
+      border: 1px solid rgba(255,255,255,0.16);
+    }
+    .profile h3{ margin: 0; font-size: 16px; }
+    .profile p{ margin: 2px 0 0; color: var(--muted); font-size: 13px; }
+
+    .chips{
+      display: flex; flex-wrap: wrap; gap: 8px;
+      padding: 14px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
+    }
+    .chip{
+      font-size: 12px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.85);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 999px;
+      padding: 6px 10px;
+      background: rgba(0,0,0,0.10);
+    }
+
+    /* Sections */
+    .section{
+      margin-top: 18px;
+      padding: 22px;
+    }
+    .section h2{
+      margin: 0 0 12px;
+      font-size: 18px;
+      letter-spacing: -0.2px;
+    }
+    .grid{
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 12px;
+    }
+    .col-6{ grid-column: span 6; }
+    .col-4{ grid-column: span 4; }
+    .col-12{ grid-column: span 12; }
+    @media (max-width: 860px){
+      .col-6, .col-4{ grid-column: span 12; }
+    }
+
+    .mini{
+      padding: 16px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
+    }
+    .mini h3{ margin: 0 0 6px; font-size: 14px; }
+    .mini p{ margin: 0; color: var(--muted); font-size: 14px; }
+
+    /* Gallery */
+    .gallery{
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 10px;
+    }
+    .photo{
+      grid-column: span 4;
+      aspect-ratio: 4/3;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      overflow: hidden;
+      background: rgba(255,255,255,0.03);
+      position: relative;
+    }
+    @media (max-width: 860px){
+      .photo{ grid-column: span 12; }
+    }
+    .photo span{
+      position: absolute; inset: 0;
+      display: grid; place-items: center;
+      color: rgba(255,255,255,0.7);
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    /* Footer */
+    footer{
+      margin-top: 18px;
+      padding: 18px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 13px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="nav">
+    <div class="nav-inner">
+      <div class="brand"><span class="dot"></span> Charan</div>
+      <div class="links">
+        <a href="#about">About</a>
+        <a href="#highlights">Highlights</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <section class="hero">
+      <div class="card hero-main">
+        <div class="kicker"><span></span> Personal Website</div>
+        <h1>Hi, I’m Charan.</h1>
+        <p class="subtitle">
+          I’m a student and lifelong learner who enjoys building skills, staying consistent, and improving every day.
+          I’m especially interested in technology, problem-solving, and the ways data can help people make better decisions.
+        </p>
+
+        <div class="cta">
+          <a class="btn primary" href="#contact">Contact</a>
+          <a class="btn" href="#highlights">See Highlights</a>
+        </div>
+      </div>
+
+      <aside class="card hero-side">
+        <div class="profile">
+          <div class="avatar">C</div>
+          <div>
+            <h3>Charan</h3>
+            <p>Student • Tech & Data Enthusiast</p>
+          </div>
+        </div>
+
+        <div class="chips">
+          <div class="chip">Reliable</div>
+          <div class="chip">Curious</div>
+          <div class="chip">Team-oriented</div>
+          <div class="chip">Goal-driven</div>
+          <div class="chip">Always learning</div>
+        </div>
+
+        <div class="mini">
+          <h3>Quick Note</h3>
+          <p>
+            This site is a simple snapshot of who I am, what I’m working toward, and what I enjoy outside of school.
+          </p>
+        </div>
+      </aside>
+    </section>
+
+    <section id="about" class="card section">
+      <h2>About</h2>
+      <div class="grid">
+        <div class="mini col-6">
+          <h3>Who I am</h3>
+          <p>
+            I’m someone who likes steady progress — whether that’s learning something new, improving a skill,
+            or showing up for the people around me.
+          </p>
+        </div>
+        <div class="mini col-6">
+          <h3>What I’m aiming for</h3>
+          <p>
+            I’m interested in building a future in technology where I can solve real problems, work with strong teams,
+            and keep growing.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="highlights" class="card section">
+      <h2>Highlights</h2>
+      <div class="grid">
+        <div class="mini col-4">
+          <h3>Strengths</h3>
+          <p>Consistent, dependable, and focused on improvement.</p>
+        </div>
+        <div class="mini col-4">
+          <h3>Interests</h3>
+          <p>Technology, data, fitness, and building good habits.</p>
+        </div>
+        <div class="mini col-4">
+          <h3>Fun Facts</h3>
+          <p>Replace this with 2–3 fun facts about Charan.</p>
+        </div>
+
+        <div class="mini col-6">
+          <h3>Current Goal</h3>
+          <p>Replace this with Charan’s current goal (school, career, project, etc.).</p>
+        </div>
+        <div class="mini col-6">
+          <h3>What I’m working on</h3>
+          <p>Replace this with something Charan is learning right now.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery" class="card section">
+      <h2>Gallery</h2>
+      <p class="subtitle" style="margin-bottom: 12px;">
+        Add photos of Charan (or memories with friends). If you don’t have photos yet, these can stay as placeholders.
+      </p>
+      <div class="gallery">
+        <div class="photo"><span>Photo 1</span></div>
+        <div class="photo"><span>Photo 2</span></div>
+        <div class="photo"><span>Photo 3</span></div>
+      </div>
+    </section>
+
+    <section id="contact" class="card section">
+      <h2>Contact</h2>
+      <div class="grid">
+        <div class="mini col-6">
+          <h3>Email</h3>
+          <p><a href="mailto:charan@example.com">charan@example.com</a></p>
+        </div>
+        <div class="mini col-6">
+          <h3>Social</h3>
+          <p>
+            <a href="#" target="_blank" rel="noopener">Instagram</a> •
+            <a href="#" target="_blank" rel="noopener">LinkedIn</a> •
+            <a href="#" target="_blank" rel="noopener">GitHub</a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="card">
+      © <span id="year"></span> Charan • Built with care
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
